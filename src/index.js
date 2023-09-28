@@ -11,6 +11,7 @@ import logger from "redux-logger";
 const imageResultsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_IMAGES':
+            console.log("in imageResultsReducer action.payload is:", action.payload);
             return action.payload;
         default:
             return state;
@@ -22,7 +23,7 @@ function* getSearch(action) {
   try {
     const imageResults = yield axios.get(`/api/search/${action.payload}`);
     console.log(imageResults)
-    yield put({ type: 'SET_IMAGES', payload: imageResults.data});
+    yield put({ type: 'SET_IMAGES', payload: imageResults.data.data});
     // console.log("Image Results:", imageResults.data);
   } catch (error) {
     console.log("error fetching images", error);

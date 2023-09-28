@@ -34,12 +34,9 @@ function Search() {
           ></input>
           <button type="submit">Search!</button>
         </form>
-        <>
           {imageList.map((image) => (
-            // <SearchItem/>
-            <li key={image}>{image}</li>
+            <SearchItem/>
           ))}
-        </>
       </div>
     </>
   );

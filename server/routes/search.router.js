@@ -12,7 +12,7 @@ router.get('/:search', (req, res) => {
     console.log("in Get Server")
     axios({
         method: "GET",
-        url: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchQuery}&limit=5&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+        url: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchQuery}&limit=5`
         
     })
         .then((response) => {
