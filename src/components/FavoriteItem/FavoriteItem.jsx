@@ -1,6 +1,6 @@
-
+import Favorites from "../Favorites/Favorites";
 
 function FavoriteItem(){
     return ()
 }
-export default Search;
+export default FavoriteItem;
