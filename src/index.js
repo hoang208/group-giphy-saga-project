@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App/App";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeLatest} from "redux-saga/effects";
 import createSagaMiddleware from "redux-saga";
 import axios from "axios";
 import logger from "redux-logger";
@@ -17,10 +17,13 @@ const imageResultsReducer = (state = [], action) => {
     }
 };    
 
+
 function* getSearch(action) {
   try {
-    const imageResults = yield call (axios.get, `/api/search?search=${action.payload}`)
-    yield put({ type: "SET_IMAGES", payload: imageResults.data });
+    const imageResults = yield axios.get(`/api/search/${action.payload}`);
+    console.log(imageResults)
+    yield put({ type: 'SET_IMAGES', payload: imageResults.data});
+    // console.log("Image Results:", imageResults.data);
   } catch (error) {
     console.log("error fetching images", error);
   }
@@ -28,7 +31,7 @@ function* getSearch(action) {
 
 
 function* watcherSaga() {
-
+    yield takeLatest('GET_IMAGES', getSearch);
 }
 
 const sagaMiddleware = createSagaMiddleware();

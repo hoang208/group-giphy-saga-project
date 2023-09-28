@@ -1,6 +1,9 @@
 import App from "../App/App";
 
-function Favorites(){
-    return ()
+function Favorites() {
+  return (
+  <>
+  </>
+  )
 }
 export default Favorites;

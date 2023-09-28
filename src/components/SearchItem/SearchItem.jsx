@@ -1,6 +1,10 @@
 import App from "../App/App";
+import Search from "../Search/Search";
 
 function SearchItem(){
-    return ()
+    return (
+        <>
+        </>
+        )
 }
 export default SearchItem;

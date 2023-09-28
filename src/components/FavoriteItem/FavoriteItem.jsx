@@ -1,6 +1,9 @@
 import Favorites from "../Favorites/Favorites";
 
 function FavoriteItem(){
-    return ()
+    return (
+        <>
+        </>
+        )
 }
 export default FavoriteItem;

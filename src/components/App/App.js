@@ -1,6 +1,5 @@
 import React from 'react';
 import Search from '../Search/Search';
-import SearchItem from '../SearchItem/SearchItem';
 import Favorites from '../Favorites/Favorites'
 
 function App(props) {
