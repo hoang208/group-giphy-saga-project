@@ -7,11 +7,12 @@ const API_KEY = process.env.API_KEY
 
 const router = express.Router();
 
-router.get('/search', (req, res) => {
-    let searchQuery=req.query.search
+router.get('/:search', (req, res) => {
+    let searchQuery=req.params['search']
+    console.log("in Get Server")
     axios({
         method: "GET",
-        url: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}q=${searchQuery}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+        url: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchQuery}&limit=5`
         
     })
         .then((response) => {
@@ -19,7 +20,7 @@ router.get('/search', (req, res) => {
             res.send(response.data);
         })
         .catch((err) => {
-            console.log("get to giphy random error!:", err)
+            console.log("get to giphy search error!:", err)
         })
 })
 
