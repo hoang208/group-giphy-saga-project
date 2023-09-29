@@ -35,7 +35,11 @@ function Search() {
           <button type="submit">Search!</button>
         </form>
           {imageList.map((image) => (
-            <SearchItem/>
+            <SearchItem
+            key={image.id}
+            id={image.id}
+            url={image.images.original.url}
+            />
           ))}
       </div>
     </>
