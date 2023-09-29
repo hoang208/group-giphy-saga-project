@@ -28,20 +28,23 @@ const favoritesReducer = (state = [], action) => {
     }
 };    
 
-const favoritesCategoryUpdate = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_CATEGORY':
-            console.log("in favoritesReducer action.payload is:", action.payload);
-            return action.payload;
-        default:
-            return state;
-    }
-};    
+// We are not using this reducer, but it may be helpful boilerplate in the future:
+
+// const favoritesCategoryUpdate = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_CATEGORY':
+//             console.log("in favoritesReducer action.payload is:", action.payload);
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// };    
 
 function* postFavorite(action) {
   try {
-      yield axios.post('/api/favorite', action.payload);
-      yield put({ type: 'GET_IMAGES' });
+      const postFavorite=yield axios.post('/api/favorite', action.payload);
+      console.log('postfavorite',postFavorite.config.data)
+      yield put({ type: 'GET_FAVORITES'});
   } catch (error) {
       console.log('error posting favorite', error);
   }    
@@ -93,7 +96,7 @@ const storeInstance = createStore(
   combineReducers({
     imageResultsReducer,
     favoritesReducer,
-    favoritesCategoryUpdate
+    // favoritesCategoryUpdate
   }),
   applyMiddleware(sagaMiddleware, logger)
 );

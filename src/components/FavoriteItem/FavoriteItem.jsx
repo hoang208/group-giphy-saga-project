@@ -5,6 +5,7 @@ function FavoriteItem(props) {
     const dispatch=useDispatch()
 
     const handleRadioChange = (event) => {
+      event.preventDefault()
       console.log(event.target.value)
         dispatch({ type: "UPDATE_CATEGORY", payload: {id: props.id, category: event.target.value} });
       };
