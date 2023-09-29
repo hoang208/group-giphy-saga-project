@@ -58,8 +58,22 @@ router.put('/:favId', (req, res) => {
 });
 
 // delete a favorite
-router.delete('/', (req, res) => {
-  res.sendStatus(200);
+router.delete('/:id', (req, res) => {
+  let idToDelete = req.params.id;
+  console.log("idToDelete", idToDelete);
+  let sqlText = `
+        DELETE FROM category WHERE "id" = $1;
+        `;
+  pool
+    .query(sqlText, [idToDelete])
+    .then((result) => {
+      console.log("Deleted from database ", idToDelete);
+      res.sendStatus(202);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

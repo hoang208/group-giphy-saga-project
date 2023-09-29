@@ -82,11 +82,22 @@ function* updateFavorite(action) {
   }
 }
 
+function* deleteFavorite(action) {
+  try {
+    const deleteFavorite = yield axios.delete(`/api/favorite/${action.payload.id}`);
+    console.log(deleteFavorite)
+    yield put({ type: 'GET_FAVORITES'});
+  } catch (error) {
+    console.log("error DELETING images", error);
+  }
+}
+
 function* watcherSaga() {
     yield takeLatest('GET_IMAGES', getSearch);
     yield takeLatest('ADD_FAVORITE', postFavorite)
     yield takeLatest('GET_FAVORITES', getFavorite)
     yield takeLatest('UPDATE_CATEGORY', updateFavorite)
+    yield takeLatest('DELETE_FAVORITE', deleteFavorite)
 
 }
 
